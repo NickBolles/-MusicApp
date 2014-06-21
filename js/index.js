@@ -1,6 +1,6 @@
 
 var app = {
-        audioSource: ['sounds/sound1.mp3','sounds/sound2.mp3'],
+        audioSource: ['sounds/sound1.wav','sounds/sound2.wav', 'sounds/sound3.wav', 'sounds/sound4.wav'],
         currentTrack:0,
         
         // Application Constructor
