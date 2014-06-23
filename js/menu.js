@@ -4,7 +4,7 @@ $(function(){
             var menu = document.getElementById('menu');
             var menuStatus=false;
 /******************PERSONALIZE MENU**********************/
-            var menuSize=new Number(300);
+            var menuSize="50%";
             var menubgColor="#5a5959";
             var menuOpacity ="1";
             var menuShadowEnabled = true;
@@ -48,7 +48,7 @@ $(function(){
                 "height": "100%",
                 "display": "block !important",
                 "float": "left",
-                "margin-left": -(menuSize+100),
+                "margin-left": -menuSize,
                 "margin-top": function(){
                     if (!menuOverHeader){
                         return $("#header").height();
@@ -198,7 +198,7 @@ $(function(){
                     */
                    menuStatus = true;
                     $(menu).animate({
-                          marginLeft: "+="+(menuSize+100)+"px",
+                          marginLeft: "+="+(menuSize)+"px",
                     }, 300);
                     shadeStatus(menuStatus);
                     return false;
@@ -209,7 +209,7 @@ $(function(){
                         marginLeft: "0px",
                     }, 300);*/
                     $(menu).animate({
-                          marginLeft: "-=" + (menuSize+100) + "px",
+                          marginLeft: "-=" + (menuSize) + "px",
                     }, 300);
                     shadeStatus(menuStatus);
                     return false;
