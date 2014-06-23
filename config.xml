@@ -17,7 +17,9 @@
        Nick Bolles
     </author>
     <preference name="webviewbounce" value="true"/>
+	<preference name="EnableViewportScale" value="true" />
 	<gap:platform name="ios" />
 	<gap:platform name="android" />
 	<gap:platform name="winphone" />
+
 </widget>

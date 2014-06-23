@@ -297,7 +297,7 @@ z-index: 999995;
 #content {
     
     position:fixed;
-                /* text area height */
+    height:100%;                   /* text area height */
     width:100%;                   /* text area width */
     text-align:center;
     padding-top: 10px;
