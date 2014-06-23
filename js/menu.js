@@ -150,7 +150,7 @@ $(function(){
                 });
             };
             $('#menutrigger').css({
-                "width": "5px",
+                "width": "50px",
                 "height": "100%",
                 "display": "block !important",
                 "float": "left",
