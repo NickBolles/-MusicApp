@@ -150,7 +150,7 @@ $(function(){
                 });
             };
             $('#menutrigger').css({
-                "width": "2px",
+                "width": "5px",
                 "height": "100%",
                 "display": "block !important",
                 "float": "left",
@@ -159,6 +159,7 @@ $(function(){
                 "top":0,
                 "left":0,
                 "position":"absolute",
+				"background-color": "pink"
             });
             
             
