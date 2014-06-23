@@ -6,7 +6,7 @@ var app = {
         // Application Constructor
     initialize: function() {
         this.troubleshoot= false;
-        this.audioSource= ['sounds/sound1.mp3','sounds/sound2.mp3','sounds/sound3.mp3','sounds/sound4.mp3'];
+        this.audioSource= ['sounds/sound1.wav','sounds/sound2.wav','sounds/sound3.wav','sounds/sound4.wav'];
         this.currentTrack=0;
         this.audio=document.getElementById('audioElement');
         this.bindEvents();
