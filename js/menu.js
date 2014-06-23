@@ -48,7 +48,7 @@ $(function(){
                 "height": "100%",
                 "display": "block !important",
                 "float": "left",
-                "margin-left": -menuSize,
+                "margin-right": menuSize,
                 "margin-top": function(){
                     if (!menuOverHeader){
                         return $("#header").height();
@@ -198,7 +198,7 @@ $(function(){
                     */
                    menuStatus = true;
                     $(menu).animate({
-                          marginLeft: "+="+(menuSize)+"px",
+                          marginRight: "-="+(menuSize),
                     }, 300);
                     shadeStatus(menuStatus);
                     return false;
@@ -209,7 +209,7 @@ $(function(){
                         marginLeft: "0px",
                     }, 300);*/
                     $(menu).animate({
-                          marginLeft: "-=" + (menuSize) + "px",
+                          marginRight: "+=" + (menuSize),
                     }, 300);
                     shadeStatus(menuStatus);
                     return false;
