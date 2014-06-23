@@ -7,7 +7,7 @@
 
     <!-- versionCode is optional and Android only -->
 
-    <name>PhoneGap Example</name>
+    <name>Music Player Example</name>
 
     <description>
         An example phonegap app for playing music in the background

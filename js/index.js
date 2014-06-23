@@ -1,12 +1,18 @@
 
+
 var app = {
-        audioSource: ['sounds/sound1.wav','sounds/sound2.wav', 'sounds/sound3.wav', 'sounds/sound4.wav'],
-        currentTrack:0,
+        
         
         // Application Constructor
     initialize: function() {
+        this.troubleshoot= false;
+        this.audioSource= ['sounds/sound1.mp3','sounds/sound2.mp3','sounds/sound3.mp3','sounds/sound4.mp3'];
+        this.currentTrack=0;
+        this.audio=document.getElementById('audioElement');
         this.bindEvents();
-        this.audio = document.getElementById('audioElement');
+        $('#content').css({
+            "margin-top": $(".header").height()
+        });
     },
     // Bind Event Listeners
     //
@@ -14,8 +20,8 @@ var app = {
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
         document.addEventListener('deviceready', this.onDeviceReady, false);
-        $(document).on('swipeleft', this.onSwipeLeft);
-        $(document).on('swiperight', this.onSwipeRight);
+        $('.app').on('swipeleft', this.onSwipeLeft);
+        $('.app').on('swiperight', this.onSwipeRight);
     },
     // deviceready Event Handler
     //
@@ -27,61 +33,104 @@ var app = {
     },
     toggleMusic: function(){
         if (!app.audio.paused){
-            console.log('click, pausing music');
+            //TROUBLESHOOTING
+            if (app.troubleshoot){
+                console.log('pausing music');
+            }
             app.audio.pause();
-            document.getElementById('toggle').innerHTML = 'Play';
         }
         else{
-            console.log('click, playing music');
+            //TROUBLESHOOTING
+            if (app.troubleshoot){
+                console.log('playing music');
+            }
             app.audio.play();
-            document.getElementById('toggle').innerHTML = 'Pause';
         }
+        app.updateToggleButtons();
         
     },
     onSwipeLeft: function(){
-        console.log('SwipeLeft, going to next song');
+        //TROUBLESHOOTING
+        if (app.troubleshoot){
+            console.log('SwipeLeft, going to next song');
+            
+        }
         app.nextSong();
     },
     onSwipeRight: function(){
-        console.log('SwipeLeft, going to previous song');
+        //TROUBLESHOOTING
+        if (app.troubleshoot){
+            console.log('SwipeLeft, going to previous song');
+        }
         app.previousSong();
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
-        if (id ==='deviceready') {
-            this.changeAudioSource(0);
+        if (id =='deviceready') {
+            //TROUBLESHOOTING
+            if (app.troubleshoot){
+                console.log('DEVICE IS READY PLAYING MUSIC');
+            }
+            app.changeAudioSource(0);
             app.audio.play();
+            app.updateToggleButtons();
         }
         
     },
     pause: function(){
         app.audio.pause();
-        
+        app.updateToggleButtons();
     },
     play: function(){
         app.audio.play();
+        app.updateToggleButtons();
     },
     nextSong: function(){
-        this.currentTrack++;
-        if (this.currentTrack>(this.audioSource.length-1)){
-            this.currentTrack=0;
+        app.currentTrack++;
+        if (app.currentTrack>(app.audioSource.length-1)){
+            app.currentTrack=0;
         }
-        app.changeAudioSource(this.currentTrack);
+        app.changeAudioSource(app.currentTrack);
         app.audio.play();
-        
+        app.updateToggleButtons();
     },
     previousSong: function(){
-        this.currentTrack--;
-        if (this.currentTrack < 0){
-            this.currentTrack=(this.audioSource.length-1);
+        app.currentTrack--;
+        if (app.currentTrack < 0){
+            app.currentTrack=(app.audioSource.length-1);
         }
-        app.changeAudioSource(this.currentTrack);
+        app.changeAudioSource(app.currentTrack);
         app.audio.play();
+        app.updateToggleButtons();
         
     },
+    //Is This method really necesary???
     changeAudioSource: function(songNum){
-        this.currentTrack=songNum;
-        app.audio.src = this.audioSource[this.currentTrack];
+        app.currentTrack=songNum;
+        app.audio.src = app.audioSource[app.currentTrack];
+    },
+    updateToggleButtons: function(){
+        var togglebuttons = document.getElementsByClassName('toggle-play-button');
+        var audioStatus;
+        if (app.audio.paused){
+            audioStatus="Play";
+        }
+        else{
+            audioStatus="Pause";
+        }
+        for (i=0; i<togglebuttons.length; i++){
+                togglebuttons.item(i).innerHTML = audioStatus;
+        }
+    },
+    pageTransition: function(fromPageID, toPageID){
+        $('#shade').trigger('click');
+        if (fromPageID){
+            $(fromPageID).fadeOut().removeClass('activePage');
+        }else{
+            $('.activePage').fadeOut().removeClass('activePage');
+        }
+        $(toPageID).fadeIn().addClass('activePage');
     }
+    
     
 };

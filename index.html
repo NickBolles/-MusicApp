@@ -1,5 +1,25 @@
 <!DOCTYPE html>
 
+
+<!--
+
+    Setup LocalStorage saving. be able to save
+        different Background Transitions
+        currentSong
+        menu color
+        menu position
+
+
+
+
+
+
+
+
+
+-->
+
+
 <html>
     <head>
         <meta charset="utf-8" />
@@ -13,11 +33,32 @@
         <title>Hello World</title>
     </head>
     <body>
-        <div class="app blink">
-            <a href="#" id="toggle" style="vertical-align: center; font-size: 30px;" onClick="app.toggleMusic();">Play</a>
+        <div id="menu" class="menutrigger">
+            <div id="menuheader">
+                <h3 style="display:inline;">Menu</h3>
+                <a href="#" onClick="app.pageTransition(null,'#settings-page');" style="float:right; margin-right:1%; "><img src="img/icons/gear-white.png" alt="Settings" height="14" width="14" /> </a>
+            </div>
+            <ul>
+                <li><a href="#" class="toggle-play-button" onclick="app.toggleMusic(); app.updateToggleButtons();">Play</a></li>
+                <li><a href="#" class="previous-song-button" onclick="app.previousSong(); app.updateToggleButtons();">Previous Song</a></li>
+                <li><a href="#" class="next-song-button" onclick="app.nextSong(); app.updateToggleButtons();">Next Song</a></li>
+            </ul>
         </div>
-        <audio src="sounds/sound1.wav" id="audioElement" preload="auto"></audio>
+        <div id="menutrigger" class="menutrigger"></div>
+        <div id="main-Page" class="activePage">
+            <header  class="header"> 
+                <h1>WELCOME!!!!!!</h1>
+            </header>   
+            <div id="content" class="app blink">
+                <a href="#" class="toggle-play-button button" onClick="app.toggleMusic();"><div class="buttonwrapper">Play</div></a>
+            </div>
+        </div>
+        <div id="settings-page">
+            <h1>THIS IS THE SETTINGS PAGE</h1>
+        </div>
+        <audio src="sounds/sound1.mp3" id="audioElement" preload="auto"></audio>
         <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/menu.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript">
             app.initialize();
