@@ -4,7 +4,9 @@ $(function(){
             var menu = document.getElementById('menu');
             var menuStatus=false;
 /******************PERSONALIZE MENU**********************/
-            var menuSize="50%";
+            var menuSize=new Number(50); //this is a percent
+			var menuHidePosition=new Number(25);
+			var menuAnnimateAmmount= menuSize+menuHidePosition + "%";
             var menubgColor="#5a5959";
             var menuOpacity ="1";
             var menuShadowEnabled = true;
@@ -44,11 +46,10 @@ $(function(){
 /******************PERSONALIZE MENU*********************/
 
             $(menu).css({
-                "width": menuSize,
+                "width": menuSize + "%",
                 "height": "100%",
                 "display": "block !important",
                 "float": "left",
-                "margin-right": menuSize,
                 "margin-top": function(){
                     if (!menuOverHeader){
                         return $("#header").height();
@@ -63,6 +64,7 @@ $(function(){
                 "background": menubgColor,
                 "opacity": menuOpacity,
                 "position":"absolute",
+				"left": "-" + (menuSize+menuHidePosition) + "%" ,
                 "box-shadow": function(){
                     if (menuShadowEnabled){
                         return menuShadow;
@@ -87,7 +89,7 @@ $(function(){
             $("#menu ul").css({
                 "margin":"0",
                 "padding": "0",
-                "width": "inherit"                
+                "width": "100%"                
             });
             $("#menu ul li").css({
                 "list-style-type": "none",
@@ -150,7 +152,7 @@ $(function(){
                 });
             };
             $('#menutrigger').css({
-                "width": "50px",
+                "width": "2px",
                 "height": "100%",
                 "display": "block !important",
                 "float": "left",
@@ -198,7 +200,7 @@ $(function(){
                     */
                    menuStatus = true;
                     $(menu).animate({
-                          marginRight: "-="+(menuSize),
+                          left: "+=" + menuAnnimateAmmount,
                     }, 300);
                     shadeStatus(menuStatus);
                     return false;
@@ -209,7 +211,7 @@ $(function(){
                         marginLeft: "0px",
                     }, 300);*/
                     $(menu).animate({
-                          marginRight: "+=" + (menuSize),
+                          left: "-=" + menuAnnimateAmmount,
                     }, 300);
                     shadeStatus(menuStatus);
                     return false;

@@ -13,6 +13,9 @@ var app = {
         $('#content').css({
             "margin-top": $(".header").height()
         });
+        
+		
+		
     },
     // Bind Event Listeners
     //
@@ -29,6 +32,8 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app._receivedEvent('deviceready');
+
+
         
     },
     toggleMusic: function(){
@@ -50,18 +55,22 @@ var app = {
         
     },
     onSwipeLeft: function(){
+        app.Loading(true);
         //TROUBLESHOOTING
         if (app.troubleshoot){
             console.log('SwipeLeft, going to next song');
             
         }
+		app.Loading(true);
         app.nextSong();
     },
     onSwipeRight: function(){
+        app.Loading(true);
         //TROUBLESHOOTING
         if (app.troubleshoot){
             console.log('SwipeLeft, going to previous song');
         }
+		
         app.previousSong();
     },
     // Update DOM on a Received Event
@@ -74,16 +83,19 @@ var app = {
             app.changeAudioSource(0);
             app.audio.play();
             app.updateToggleButtons();
+            
         }
         
     },
     pause: function(){
         app.audio.pause();
         app.updateToggleButtons();
+        app.Loading(false);
     },
     play: function(){
         app.audio.play();
         app.updateToggleButtons();
+        app.Loading(false);
     },
     nextSong: function(){
         app.currentTrack++;
@@ -93,6 +105,7 @@ var app = {
         app.changeAudioSource(app.currentTrack);
         app.audio.play();
         app.updateToggleButtons();
+        app.Loading(false);
     },
     previousSong: function(){
         app.currentTrack--;
@@ -102,6 +115,7 @@ var app = {
         app.changeAudioSource(app.currentTrack);
         app.audio.play();
         app.updateToggleButtons();
+        app.Loading(false);
         
     },
     //Is This method really necesary???
@@ -123,6 +137,7 @@ var app = {
         }
     },
     pageTransition: function(fromPageID, toPageID){
+        app.Loading(true);
         $('#shade').trigger('click');
         if (fromPageID){
             $(fromPageID).fadeOut().removeClass('activePage');
@@ -130,7 +145,28 @@ var app = {
             $('.activePage').fadeOut().removeClass('activePage');
         }
         $(toPageID).fadeIn().addClass('activePage');
-    }
+    },
+	Loading: function(state){
+		if (state){
+                   if ( !$('.ui-icon-loading').has("img").length ){
+                        this.loadingimg = $(document.createElement('img'));
+                        this.loadingimg.attr('src', 'img/icons/loading-icon.gif');
+                        this.loadingimg.css({
+                            "display": "block",
+                            "margin-left": "25%",
+                            "text-align": "center"
+                        });
+                        $('.ui-icon-loading').prepend(this.loadingimg);
+                    }
+                    
+                    $('.ui-loader').css({"display": "block"});
+		}
+		else{
+                    $('.ui-loader').css({"display": "none"});
+		}
+	}
+
+	
     
     
 };
