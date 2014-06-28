@@ -316,15 +316,7 @@ z-index: 999995;
 /* Portrait layout (default) */
 #content {
     
-    position:fixed;
-    height:100%;                   /* text area height */
-    width:100%;                   /* text area width */
-    text-align:center;
-    padding-top: 10px;
-    animation:rainbowColor 30000ms infinite;
-    -webkit-animation:rainbowColor 30000ms infinite;
-    animation-direction: alternate;
-    -webkit-animation-direction: alternate;
+   
 }
 h1 {
     font-size:24px;

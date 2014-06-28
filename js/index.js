@@ -1,5 +1,33 @@
-
-
+$(document).ready(function(){
+    var loadingimg = $(document.createElement('img'));
+    loadingimg.attr('src', 'img/icons/loading-icon.gif');
+    loadingimg.css({
+        "display": "block",
+        "margin-left": "25%",
+        "text-align": "center"
+    });
+    $('.ui-icon-loading').prepend(loadingimg);
+    $('.content').css({
+            "margin-top": $(".header").height(),
+            "position":"fixed",
+            "height":($(document).height()-$(".header").height())+'px',                   
+            "width":"100%",                   
+            "text-align":"center",
+            "padding-top": "10px",
+            "animation":"rainbowColor 30000ms infinite",
+            "-webkit-animation":"rainbowColor 30000ms infinite",
+            "animation-direction": "alternate",
+            "-webkit-animation-direction": "alternate"
+        });
+    $('.disabledPage').css({
+        "display":"none",
+    });
+    $(window).resize(function(){
+        $('.content').css({
+            "height":($(document).height()-$(".header").height())+'px'
+        });
+    });
+});
 var app = {
         
         
@@ -10,9 +38,7 @@ var app = {
         this.currentTrack=0;
         this.audio=document.getElementById('audioElement');
         this.bindEvents();
-        $('#content').css({
-            "margin-top": $(".header").height()
-        });
+        
         
 		
 		
@@ -92,6 +118,7 @@ var app = {
         app.updateToggleButtons();
         app.Loading(false);
     },
+    //Play the music
     play: function(){
         app.audio.play();
         app.updateToggleButtons();
@@ -107,6 +134,7 @@ var app = {
         app.updateToggleButtons();
         app.Loading(false);
     },
+    //Go to the Previous Audio Source
     previousSong: function(){
         app.currentTrack--;
         if (app.currentTrack < 0){
@@ -136,28 +164,26 @@ var app = {
                 togglebuttons.item(i).innerHTML = audioStatus;
         }
     },
+    //A method for transitioning from one page to another
     pageTransition: function(fromPageID, toPageID){
-        app.Loading(true);
-        $('#shade').trigger('click');
-        if (fromPageID){
-            $(fromPageID).fadeOut().removeClass('activePage');
-        }else{
-            $('.activePage').fadeOut().removeClass('activePage');
+        setMenu(false);
+        //Fallback to the activePage class if there is not a fromPageID included, in the case of menu buttons
+        if (fromPageID==null){
+            fromPageID= '#' + (document.getElementsByClassName('activePage')[0].id);
+            console.log(fromPageID+ 'to: ' + toPageID);
         }
-        $(toPageID).fadeIn().addClass('activePage');
+        if (fromPageID!==toPageID){
+            app.Loading(true);
+            
+            $(fromPageID).fadeOut(1000).removeClass('activePage');
+            $(toPageID).fadeIn(1000).addClass('activePage');
+            setTimeout(app.Loading(false),1000);
+            
+        }
     },
 	Loading: function(state){
 		if (state){
-                   if ( !$('.ui-icon-loading').has("img").length ){
-                        this.loadingimg = $(document.createElement('img'));
-                        this.loadingimg.attr('src', 'img/icons/loading-icon.gif');
-                        this.loadingimg.css({
-                            "display": "block",
-                            "margin-left": "25%",
-                            "text-align": "center"
-                        });
-                        $('.ui-icon-loading').prepend(this.loadingimg);
-                    }
+                   
                     
                     $('.ui-loader').css({"display": "block"});
 		}
