@@ -212,7 +212,7 @@ textarea[contenteditable] {
 
 .active{
 	color:#fff;
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(30,29,29,1)), color-stop(21%,rgba(56,55,55,1)));
+	background: linear-gradient(#1e1d1d, #383737 21%);//0-webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(30,29,29,1)), color-stop(21%,rgba(56,55,55,1)));
 	text-shadow: 0px 1px 1px #000;
 }
 

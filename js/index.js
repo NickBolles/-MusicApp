@@ -167,7 +167,7 @@ var app = {
     //A method for transitioning from one page to another
     pageTransition: function(fromPageID, toPageID){
         setMenu(false);
-        //Fallback to the activePage class if there is not a fromPageID included, in the case of menu buttons
+        //Fallback to the activePage class if there is not a fromPageID included, for example in the case of menu buttons
         if (fromPageID==null){
             fromPageID= '#' + (document.getElementsByClassName('activePage')[0].id);
             console.log(fromPageID+ 'to: ' + toPageID);

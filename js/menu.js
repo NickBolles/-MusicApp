@@ -1,4 +1,4 @@
-var menu = document.getElementById('menu');
+    var menu = document.getElementById('menu');
     var menuStatus=false;
 /******************PERSONALIZE MENU**********************/
     var menuSize=new Number(50); //this is a percent
@@ -18,7 +18,7 @@ var menu = document.getElementById('menu');
     //var shadebg = "linear-gradient(to right,black 30%,transparent)";
     var menuTitle={
         fonttype: "arial",
-        fontsize: "20px",
+        fontsize: new Number(20),
         color: "#fff",
         bgcolor: "#5a5959",
         padding: "4px 0 4px 10px",
@@ -30,7 +30,7 @@ var menu = document.getElementById('menu');
     };
     var menuItem ={
         color: "#fff",
-        fontSize: "14px",
+        fontSize: new Number(14),
         hover:{
             bgColor: "#716f6f",
             color: "#fff"
@@ -65,7 +65,7 @@ $(document).ready(function(){
         "background": menubgColor,
         "opacity": menuOpacity,
         "position":"absolute",
-                        "left": "-" + (menuSize+menuHidePosition) + "%" ,
+        "left": "-" + (menuSize+menuHidePosition) + "%" ,
         "box-shadow": function(){
             if (menuShadowEnabled){
                 return menuShadow;
@@ -74,9 +74,9 @@ $(document).ready(function(){
             }
         }
     });
-    $("#menuheader").css({
+    $("#menu header").css({
         "font-family": menuTitle.fonttype,
-        "font-size":menuTitle.fontsize,
+        "font-size":menuTitle.fontsize + 'px',
         "color":menuTitle.color,
         "margin":0,
         "background-color":menuTitle.bgcolor,
@@ -85,7 +85,17 @@ $(document).ready(function(){
         "border-top": menuTitle.topborder,
         "border-bottom":menuTitle.bottomborder,
         "text-shadow": menuTitle.textshadow
-
+    });
+    $('.sub-menu').css({
+        "border-bottom": "solid #333 1px",
+        "box-shadow": "0 1px 0 #727272",
+        "color": menuItem.color,
+        "font-size": (menuItem.fontSize * 1.25) + 'px',
+        "font-family": "arial",
+        "text-decoration": "underline",
+        "display": "block",
+        "padding": "10px 0px 10px 10px",
+        "text-shadow": "0px 1px 1px #000000"        
     });
     $("#menu ul").css({
         "margin":"0",
@@ -94,21 +104,20 @@ $(document).ready(function(){
     });
     $("#menu ul li").css({
         "list-style-type": "none",
-        "margin": "0px 0",               
+        "margin": "0"
     });
-
-    //NOT FUNCTIONING
-    $('#menu ul li a:link, #menu ul li a:visited').css({
+    $('#menu ul li a:link, #menu ul li a:visited, .sub-menu li a').css({
         "border-bottom": "solid #333 1px",
         "box-shadow": "0 1px 0 #727272",
         "color": menuItem.color,
-        "font-size": menuItem.fontSize,
+        "font-size": menuItem.fontSize + "px",
         "font-family": "arial",
         "text-decoration": "none",
         "display": "block",
         "padding": "10px 0px 10px 10px",
         "text-shadow": "0px 1px 1px #000000",
       });
+      
 
 
 
@@ -116,9 +125,19 @@ $(document).ready(function(){
         "background-color": menuItem.hover.bgColor,
         "color": menuItem.hover.color
       });
-    $('#menu ul li .active').css({
+    
+    $('.active').css({
         "background-color": menuItemActive.bgColor,
         "background": menuItemActive.background
+      });
+      
+      
+      $('#menu footer').css({
+          "position": "absolute",
+          "bottom":"0",
+          "width":"100%",
+          "border-bottom": "solid #333 1px"
+          
       });
 
     if (shadeInclude){
