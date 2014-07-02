@@ -100,7 +100,8 @@ $(document).ready(function(){
     $("#menu ul").css({
         "margin":"0",
         "padding": "0",
-        "width": "100%"                
+        "width": "100%",
+        "overflow-y": "scroll"
     });
     $("#menu ul li").css({
         "list-style-type": "none",

@@ -265,7 +265,7 @@ height: 42.375px;
 
 line-height: 20.799999237060547px;
 padding-top: 1px;
-position: absolute;
+position: fixed;
 right: 0px;
 left: 0px;
 top: -1px;
@@ -380,3 +380,20 @@ h1 {
     to   {background: transparent;transform: scale(1.2,1.2);}
 }
 
+#menu footer ul li{
+    display:inline-block;
+    width:33%;
+    height:100%;
+    text-align: center;
+}
+#menu footer ul li a, #menu footer ul{
+    height:100%;
+    text-align: center;
+}
+#menu footer{
+    height:20%;
+}
+#menu footer ul{
+    height:80%;
+}    
+          

@@ -51,6 +51,9 @@ var app = {
         document.addEventListener('deviceready', this.onDeviceReady, false);
         $('.app').on('swipeleft', this.onSwipeLeft);
         $('.app').on('swiperight', this.onSwipeRight);
+        document.body.addEventListener('touchmove', function(event) {
+                                        event.preventDefault();
+                                      }, false); 
     },
     // deviceready Event Handler
     //
